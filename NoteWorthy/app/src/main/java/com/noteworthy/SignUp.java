@@ -65,7 +65,7 @@ public class SignUp extends ActionBarActivity {
 		ParseUser uniqueUser = new ParseUser();
 		
 		EditText username = (EditText)findViewById(R.id.signup_username);
-		EditText password = (EditText)findViewById(R.id.signup_password);
+		final EditText password = (EditText)findViewById(R.id.signup_password);
 		EditText email = (EditText)findViewById(R.id.email);
 		
 		//Test
@@ -74,26 +74,30 @@ public class SignUp extends ActionBarActivity {
 		uniqueUser.setUsername(username.getText().toString());
 		uniqueUser.setPassword(password.getText().toString());
 		uniqueUser.setEmail(email.getText().toString());
-		
-		
+
+
+
 		uniqueUser.signUpInBackground(new SignUpCallback() {
 			  public void done(ParseException e) {
-			    if (e == null) {
+			    if (e == null && password.length() >= 5) {
 			      // Hooray! Let them use the app now.
 			    	Log.v("Signup", "TESTETSTETS");
+                    Toast t = Toast.makeText(SignUp.this, "You are ready to start sharing!", Toast.LENGTH_LONG);
+                    t.show();
+                    finish();
 			    } else {
 			    	Log.v("WTF", "EEEEEEEEEEEE");
 			    	Log.v("ts", e.toString());
 			      // Sign up didn't succeed. Look at the ParseException
 			      // to figure out what went wrong
+                    Toast t = Toast.makeText(SignUp.this, "Password must be at least 5 characters", Toast.LENGTH_LONG);
+                    t.show();
 			    	e.printStackTrace();
 			    }
 			  }
 			});
 		
-		Toast t = Toast.makeText(this, "You are ready to start sharing!", Toast.LENGTH_LONG);
-		t.show();
-		finish();
+
 	}
 
 	/**
