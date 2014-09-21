@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.noteworthy.notesDisplay" >
+
+    <item android:id="@+id/thumbsup"
+          android:icon="@drawable/ic_thumbup"
+          android:title="pone"
+          android:showAsAction="ifRoom" />
+
+</menu>

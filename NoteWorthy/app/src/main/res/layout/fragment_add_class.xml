@@ -1,0 +1,87 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="edward.mcenrue.noteworthy.app.Classes"
+    android:id="@+id/androidActivities"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textViewSchool"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/title_school"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <AutoCompleteTextView
+        android:id="@+id/school_input"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="11dp"
+        android:hint="Enter School"
+        android:paddingLeft="5dp"
+        android:background="@drawable/sign_up_fields">
+        <requestFocus />
+    </AutoCompleteTextView>
+
+    <TextView
+        android:id="@+id/textViewCourse"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/title_course"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <AutoCompleteTextView
+        android:id="@+id/course_input"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="11dp"
+        android:hint="Enter Course"
+        android:paddingLeft="5dp"
+        android:background="@drawable/sign_up_fields">
+    </AutoCompleteTextView>
+
+    <TextView
+        android:id="@+id/textViewProfessor"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/title_professor"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <EditText
+        android:id="@+id/professor_input"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:hint="Enter Professor Name"
+        android:inputType="textPersonName"
+        android:layout_marginTop="11dp"
+        android:paddingLeft="5dp"
+        android:background="@drawable/sign_up_fields"/>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:gravity="bottom">
+
+        <Button
+            android:id="@+id/doneButton"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/professor_input"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="96dp"
+            android:text="Done"
+            android:textColor="@color/white"
+            android:onClick="finishedAddingClass"
+            android:background="@drawable/done_button"/>
+    </LinearLayout>
+
+
+</LinearLayout>
