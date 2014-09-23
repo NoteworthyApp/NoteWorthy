@@ -5,6 +5,9 @@ import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -19,7 +22,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
-import android.os.Build;
 
 public class SignUp extends ActionBarActivity {
 	
@@ -39,7 +41,8 @@ public class SignUp extends ActionBarActivity {
 			getSupportFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
 		}
-	}
+
+    }
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -81,6 +84,7 @@ public class SignUp extends ActionBarActivity {
 			  public void done(ParseException e) {
 			    if (e == null && password.length() >= 5) {
 			      // Hooray! Let them use the app now.
+
 			    	Log.v("Signup", "TESTETSTETS");
                     Toast t = Toast.makeText(SignUp.this, "You are ready to start sharing!", Toast.LENGTH_LONG);
                     t.show();

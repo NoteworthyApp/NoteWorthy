@@ -1,5 +1,7 @@
 package com.noteworthy;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.PopupMenu;
@@ -27,7 +29,10 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+
 public class MainActivity extends ActionBarActivity {
+
+    SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +49,13 @@ public class MainActivity extends ActionBarActivity {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.container, new PlaceholderFragment())
                     .commit();
+        }
+
+        preferences = getPreferences(Context.MODE_PRIVATE);
+        String userActive = preferences.getString("userActive", "");
+        if(userActive.equals("true")) {
+            Intent intent = new Intent(MainActivity.this, Classes.class);
+            startActivity(intent);
         }
         
         ParseObject fubu = new ParseObject("FuBu");
@@ -87,6 +99,10 @@ public class MainActivity extends ActionBarActivity {
 				// TODO Auto-generated method stub
 				if (uniqueUser != null) {
 	    		      // Hooray! The user is logged in.
+                    SharedPreferences.Editor preferencesEditor = preferences.edit();
+                    preferencesEditor.putString("userActive", "true");
+                    preferencesEditor.commit();
+
 						Intent intent = new Intent(MainActivity.this, Classes.class);
 						startActivity(intent);
 	    		    } 
