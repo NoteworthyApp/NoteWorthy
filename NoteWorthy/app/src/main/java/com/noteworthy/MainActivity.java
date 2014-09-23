@@ -1,5 +1,6 @@
 package com.noteworthy;
 
+import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.PopupMenu;
@@ -26,6 +27,7 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.noteworthy.
 
 public class MainActivity extends ActionBarActivity {
 
@@ -87,6 +89,7 @@ public class MainActivity extends ActionBarActivity {
 				// TODO Auto-generated method stub
 				if (uniqueUser != null) {
 	    		      // Hooray! The user is logged in.
+
 						Intent intent = new Intent(MainActivity.this, Classes.class);
 						startActivity(intent);
 	    		    } 
