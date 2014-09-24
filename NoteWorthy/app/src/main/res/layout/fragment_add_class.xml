@@ -74,13 +74,22 @@
             android:id="@+id/doneButton"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/professor_input"
-            android:layout_centerHorizontal="true"
             android:layout_marginTop="96dp"
             android:text="Done"
             android:textColor="@color/white"
             android:onClick="finishedAddingClass"
             android:background="@drawable/done_button"/>
+
+        <Button
+            android:id="@+id/cancelButton"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="96dp"
+            android:text="Cancel"
+            android:textColor="@color/white"
+            android:onClick="cacnel"
+            android:background="@drawable/cancel_button"/>
+
     </LinearLayout>
 
 
