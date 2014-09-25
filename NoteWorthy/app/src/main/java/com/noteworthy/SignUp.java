@@ -44,6 +44,10 @@ public class SignUp extends ActionBarActivity {
 
     }
 
+    public void cancel() {
+        finish();
+    }
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 
