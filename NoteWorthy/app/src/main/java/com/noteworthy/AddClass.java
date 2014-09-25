@@ -61,6 +61,10 @@ public class AddClass extends ActionBarActivity {
 	 finish();
  }
 
+    public void cancel() {
+        finish();
+    }
+
  @Override
  public boolean onCreateOptionsMenu(Menu menu) {
   // Inflate the menu; this adds items to the action bar if it is present.
