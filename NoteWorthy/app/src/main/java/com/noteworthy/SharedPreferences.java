@@ -1,3 +1,5 @@
+package com.noteworthy;
+
 import android.content.Context;
 import android.preference.PreferenceManager;
 
