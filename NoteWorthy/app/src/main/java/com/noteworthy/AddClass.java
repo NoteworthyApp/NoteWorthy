@@ -61,7 +61,8 @@ public class AddClass extends ActionBarActivity {
 	 finish();
  }
 
-    public void cancel() {
+    public void cancel(View v) {
+
         finish();
     }
 
