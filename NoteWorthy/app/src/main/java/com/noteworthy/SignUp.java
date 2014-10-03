@@ -44,7 +44,8 @@ public class SignUp extends ActionBarActivity {
 
     }
 
-    public void cancel() {
+    public void cancel(View view)
+    {
         finish();
     }
 
