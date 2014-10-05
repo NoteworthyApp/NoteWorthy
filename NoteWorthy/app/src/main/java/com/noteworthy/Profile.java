@@ -1,10 +1,14 @@
 package com.noteworthy;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.graphics.drawable.Drawable;
+import android.media.ExifInterface;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
@@ -22,6 +26,8 @@ import android.os.Build;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import java.io.File;
 
 public class Profile extends ActionBarActivity {
     private static int RESULT_LOAD_IMAGE = 1;
@@ -62,10 +68,70 @@ public class Profile extends ActionBarActivity {
             cursor.moveToFirst();
             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
             String picturePath = cursor.getString(columnIndex);
+            File f = new File(picturePath);
             cursor.close();
+
             ImageView img = (ImageView)findViewById(R.id.profilePicture);
-            img.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+            img.setScaleType(ImageView.ScaleType.CENTER);
+            float rotate = getOrientation(Profile.this, selectedImage, picturePath);
+            img.setImageBitmap(rotate(rotate, f));
         }
+    }
+
+    //Rotates the image if it is not straight
+    public Bitmap rotate(float x, File file) {
+
+        Bitmap bitmapOrg = BitmapFactory.decodeFile(file.getAbsolutePath());
+
+        int width = bitmapOrg.getWidth();
+
+        int height = bitmapOrg.getHeight();
+
+
+        int newWidth = 1200;
+
+        int newHeight  = 1200;
+
+        // calculate the scale - in this case = 0.4f
+
+        float scaleWidth = ((float) newWidth) / width;
+
+        float scaleHeight = ((float) newHeight) / height;
+
+        Matrix matrix = new Matrix();
+
+        matrix.postScale(scaleWidth, scaleHeight);
+        matrix.postRotate(x);
+
+        Bitmap resizedBitmap = Bitmap.createBitmap(bitmapOrg, 0, 0,width, height, matrix, true);
+
+        return resizedBitmap;
+    }
+
+    //Rotate the image to keep it in the correct orientation
+    public float getOrientation(Context context, Uri uri, String path) {
+        float rotate = 0;
+        try {
+            context.getContentResolver().notifyChange(uri, null);
+            File imageFile = new File(path);
+            ExifInterface exif = new ExifInterface(imageFile.getAbsolutePath());
+            int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
+
+            switch(orientation) {
+                case ExifInterface.ORIENTATION_ROTATE_270:
+                    rotate = 270f;
+                    break;
+                case ExifInterface.ORIENTATION_ROTATE_180:
+                    rotate = 180f;
+                    break;
+                case ExifInterface.ORIENTATION_ROTATE_90:
+                    rotate = 90f;
+                    break;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return rotate;
     }
 
 	@Override
