@@ -27,7 +27,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.parse.ParseFile;
+
 import java.io.File;
+import java.nio.ByteBuffer;
 
 public class Profile extends ActionBarActivity {
     private static int RESULT_LOAD_IMAGE = 1;
@@ -104,6 +107,13 @@ public class Profile extends ActionBarActivity {
         matrix.postRotate(x);
 
         Bitmap resizedBitmap = Bitmap.createBitmap(bitmapOrg, 0, 0,width, height, matrix, true);
+
+        int numBytes = resizedBitmap.getByteCount();
+        ByteBuffer buffer = ByteBuffer.allocate(numBytes);
+        //resizedBitmap.copyPixelsFromBuffer(buffer);
+        byte[] array = buffer.array();
+        ParseFile profilePicture = new ParseFile("pro_pic.jpg", array);
+        profilePicture.saveInBackground();
 
         return resizedBitmap;
     }
